@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<div class="container mt-3">
+    <h2>Connector's List</h2>
+    <p>Whole list of connectors added to the database up until now:</p>            
+    <table class="table table-dark table-striped table-responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Worker's Host</th>
+          <th>Worker's Port</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for connector in connector_list %}
+        <tr>
+            <td>{{ connector.name }} <a href="{{ url_for('connectors.remove_fromdb', id=connector.id)}}" class="btn btn-sm btn-outline-danger">Remove from DB</a></td> </td>
+            <td>{{ connector.worker_host }}</td>
+            <td>{{ connector.worker_port }}</td>
+            {% if button_all == 1 and button_config == 0 %}
+            <td>
+                <a href="{{ url_for('connectors.get_status', id=connector.id)}}" class="btn btn-sm is-link btn-primary">Status</a>
+                <a href="{{ url_for('connectors.pause_connector', id=connector.id)}}" class="btn btn-sm is-warning btn-warning">Pause</a>
+                <a href="{{ url_for('connectors.resume_connector', id=connector.id)}}" class="btn btn-sm is-success btn-success">Resume</a>
+                <a href="{{ url_for('connectors.get_config', id=connector.id)}}" class="btn btn-sm is-info btn-secondary">Get Config</a>
+                <a href="{{ url_for('connectors.upload_config', id=connector.id)}}" class="btn btn-sm is-primary btn-outline-secondary">Submit Config</a>
+                <a href="{{ url_for('connectors.delete_connector', id=connector.id)}}" class="btn btn-sm is-danger btn-danger">Delete</a>
+            </td>
+            {% endif %}
+            {% if button_all == 0 and button_config == 0 %}
+            <td>
+                <p>{{ connector.worker_host }}{{ connector.worker_port }} Offline</p>
+            </td>
+            {% endif %}
+            {% if button_config == 1 %}
+            <td>
+              <a href="{{ url_for('connectors.upload_config', id=connector.id)}}" class="btn btn-sm is-primary btn-outline-secondary">Submit Config</a>
+            </td>
+            {% endif %}
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

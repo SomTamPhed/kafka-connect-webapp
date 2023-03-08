@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<figure class="text-center">
+    <blockquote class="blockquote">
+        <p>Upload your Json</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+            Connector <cite title="Source Title">Config Update</cite>
+    </figcaption>
+</figure>
+
+<form class="mt-5" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Select your local Json file...</label>
+        <input class="form-control" type="file" name="file">
+
+        <button type="submit" class="btn btn-primary mt-5">Upload</button>
+    </div>
+
+</form>
+
+
+{% endblock %}

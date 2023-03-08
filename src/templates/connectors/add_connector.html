@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<div class="container mt-3 mb-5">
+    <h2>Add Connector</h2>
+    <p>Use the form above to add a new connector:</p>            
+</div>
+
+<form method="POST">
+<div class="row">
+    <div class="col-sm-6">
+        <label class="col-form-label-sm">Connector's Name</label>
+        <input type="text" class="form-control" name="connector_name" placeholder="jdbc_mediatrix">
+    </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-sm-4">
+            <label class="col-form-label-sm">Worker Fqdn/IP</label>
+            <input type="text" class="form-control" name="connector_host" placeholder="broker01.sky.internal.de">
+        </div>
+
+        <div class="col-sm-4">
+            <label class="col-form-label-sm">Worker Port</label>
+            <input type="text" class="form-control" name="connector_port" placeholder="8083">
+        </div>
+
+        <div class="col-12 mt-5">
+            <button class="btn btn-primary" value="add" name="add_connector" type="submit">Submit</button>
+        </div>
+</div>
+
+</form>
+
+{% endblock %}

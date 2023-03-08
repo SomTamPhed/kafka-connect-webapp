@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<figure class="text-center">
+    <blockquote class="blockquote">
+        <p>connector name</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+            Connector <cite title="Source Title">Status</cite>
+    </figcaption>
+</figure>
+
+<div class="container mt-5">           
+    <table class="table table-dark table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>State</th>
+            <th>Worker</th>
+            {% if trace_on == 1 %}
+            <th>Trace</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ task }}</td>
+            <td>{{ state }}</td>
+            <td>{{ worker_id }}</td>
+            {% if trace_on == 1 %}
+            <td>{{ trace }}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<figure class="text-center">
+    <blockquote class="blockquote">
+        <p>{{ name }}</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+            Connector <cite title="Source Title">Status</cite>
+    </figcaption>
+</figure>
+
+<div class="container mt-3">           
+    <table class="table table-dark table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>Worker's ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ state }}</td>
+            <td>{{ worker_id }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<div class="container mt-3">           
+    <table class="table table-dark table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>State</th>
+            <th>Worker's Task ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for item in task_elements %}
+            <td>{{ item.id }}</td>
+            <td>{{ item.state }}</td>
+            <td>{{item.worker_id}}</td>
+            <td>
+                <a href="{{ url_for('connectors.get_task_detail', connector_host=db_connector_host, connector_port=db_connector_port, connector_name=db_connector_name, task_id=item.id)}}" class="btn btn-sm is-link btn-primary">Details</a>
+                <a href="{{ url_for('connectors.restart_task', connector_host=db_connector_host, connector_port=db_connector_port, connector_name=db_connector_name, task_id=item.id)}}" class="btn btn-sm is-link btn-warning">Restart</a>
+            </td>
+            {% endfor %}
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+To initialize the database (create a migration repository), use the command:
+- flask db init
+
+To migrate the database changes, use the command:
+- flask db migrate
+
+To apply the migrations, use the command:
+- flask db upgrade
+
+Run your application
+
+- python manage.py run
